@@ -1,5 +1,4 @@
 .box{
-    display: block;
     width: 300px;
     height: 400px;
     padding: 50px;
@@ -8,23 +7,9 @@
     margin-right: auto;
 }
 
-.submitBtn{
-    background-color: #2c169b; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 20px;
-}
-
-.inputField{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 2px solid red;
+@media screen and (min-width: 420) {
+    .box{
+        width: 200px;
+        height: 300px;
+    }
 }

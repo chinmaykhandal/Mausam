@@ -7,6 +7,18 @@
   margin-top: -20px;
 }
 
+@media screen and (min-width: 420) {
+  .App{
+    height: 160vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 0px;
+    font-size: small;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
