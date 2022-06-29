@@ -7,7 +7,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
 
 const WeatherApp = () => {
   let obj = { temp: 0, feelsLike: 0, lon: 0, lat: 0 };
@@ -61,14 +63,22 @@ const WeatherApp = () => {
   const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
+    var weekdays = new Array(7);
+    weekdays[0] = "Sunday";
+    weekdays[1] = "Monday";
+    weekdays[2] = "Tuesday";
+    weekdays[3] = "Wednesday";
+    weekdays[4] = "Thursday";
+    weekdays[5] = "Friday";
+    weekdays[6] = "Saturday";
 
   const card = (
   forecast.map(artist => (
-    <div key={artist.key} style={{border: '1px solid black'}}>
+    <div key={artist.key}>
         <React.Fragment>
     <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        {(artist.dt).getDate()}, {monthNames[(artist.dt.getMonth())]}
+      {weekdays[(artist.dt).getDay()]}, {(artist.dt).getDate()} {monthNames[(artist.dt.getMonth())]}
       </Typography>
       
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -83,7 +93,7 @@ const WeatherApp = () => {
 
   const renderForecast = () => {
     return (
-      <Box sx={{ minWidth: 275 }}>
+      <Box sx={{ minWidth: 150 }}>
         <Card variant="outlined">{card}</Card>
       </Box>
     );
@@ -105,9 +115,7 @@ const WeatherApp = () => {
                 id="standard-bare"
                 variant="outlined"
                 placeholder="Enter the location"
-                onChange={(event) => {
-                    setSearch(event.target.value);
-                  }}
+                
                required/>
           <Button variant="contained" onClick={getWeather} style={{marginTop:10}}>
             Get Weather
@@ -120,6 +128,7 @@ const WeatherApp = () => {
           <h2>Feels Like : {city.feelsLike}°C</h2>
           <h3>{city.weather}</h3>
           <Button variant="contained" onClick={getForecast} style={{marginTop:10}}>Get Forecast</Button><br /><br />
+          This week's Forecast
           {renderForecast()}
         </div>  }
         
