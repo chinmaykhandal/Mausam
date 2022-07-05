@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+import { motion } from "framer-motion"
 
 const WeatherApp = () => {
   let obj = { temp: 0, feelsLike: 0, lon: 0, lat: 0 };
@@ -74,15 +75,15 @@ const WeatherApp = () => {
 
   const card = (
   forecast.map(artist => (
-    <div key={artist.key}>
-        <React.Fragment>
+    <div key={artist.key} style={{backgroundColor: "#6aabed"}}>
+        <React.Fragment style={{marginTop: "20px"}}>
     <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
       {weekdays[(artist.dt).getDay()]}, {(artist.dt).getDate()} {monthNames[(artist.dt.getMonth())]}
       </Typography>
       
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-       Temperature : {artist.temp}
+       Temperature : {artist.temp}°C
       </Typography>
       
     </CardContent>
@@ -93,8 +94,8 @@ const WeatherApp = () => {
 
   const renderForecast = () => {
     return (
-      <Box sx={{ minWidth: 150 }}>
-        <Card variant="outlined">{card}</Card>
+      <Box sx={{ minWidth: 150 }} style={{marginTop: "20px"}}>
+        <Card>{card}</Card>
       </Box>
     );
   }
@@ -115,22 +116,23 @@ const WeatherApp = () => {
                 id="standard-bare"
                 variant="outlined"
                 placeholder="Enter the location"
-                
+                onChange={(e) => {setSearch(e.target.value)}}
                required/>
           <Button variant="contained" onClick={getWeather} style={{marginTop:10}}>
             Get Weather
           </Button>
           
         </div>
-
+      
         {isSelected && <div className="info">
           <h1 className="temp">{city.temp}°C</h1>
           <h2>Feels Like : {city.feelsLike}°C</h2>
           <h3>{city.weather}</h3>
-          <Button variant="contained" onClick={getForecast} style={{marginTop:10}}>Get Forecast</Button><br /><br />
-          This week's Forecast
+          <Button variant="contained" onClick={getForecast} style={{marginTop:10}}>Get Forecast</Button><br />
+          
           {renderForecast()}
-        </div>  }
+        </div>  
+      }
         
       </div>
     </>
